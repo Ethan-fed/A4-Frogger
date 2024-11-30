@@ -17,6 +17,10 @@ namespace Game10003
             BrickColor = Color.White;
 
             BrickPosition = newPosition;
+
+            BrickWidth = 40;
+            BrickHeight = 20;
+            BrickRadius = 20;
         }
         public void Render()
         {

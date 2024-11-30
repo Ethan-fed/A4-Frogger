@@ -23,9 +23,9 @@ namespace Game10003
             paddlePosition = new Vector2(Window.Width / 2 - paddleSize.X / 2, Window.Height - 60); // Centered at the bottom
 
             bricks = new Bricks[12];
-            for (int i = 0; i < bricks.Length; i++)
+            for (int = 0; int < bricks.Length; int++)
             {
-                bricks[i] = new Bricks(new Vector2(i * 20, 20));
+
             }
         }
 
@@ -40,7 +40,11 @@ namespace Game10003
             // Draw the paddle
             DrawPaddle();
 
-            Bricks.Render();
+            for (int i = 0; i < bricks.Length; i++)
+            {
+                bricks[i] = new Bricks(new Vector2(i * 20, 20));
+            }
+            
         }
 
         // Method to draw the paddle
