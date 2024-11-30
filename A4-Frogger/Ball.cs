@@ -10,8 +10,8 @@ namespace A4_Frogger
 {
     public class Ball
     {
-        Vector2 position;
-        Vector2 velocity;
+        public Vector2 position;
+        public Vector2 velocity;
 
         int size = 25;
         
@@ -33,7 +33,7 @@ namespace A4_Frogger
         }
 
 
-        public void DrawBall()
+        private void DrawBall()
         {
             Draw.LineColor = Color.Black; 
             Draw.LineSize = 2;
