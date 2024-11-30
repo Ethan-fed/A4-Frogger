@@ -27,6 +27,7 @@ namespace A4_Frogger
         public void Update()
         {
             UpdatePosition();
+            CheckWindowCollisions();
             
             DrawBall();
         }
@@ -44,6 +45,19 @@ namespace A4_Frogger
         private void UpdatePosition()
         {
             position += velocity;
+        }
+
+
+        private void CheckWindowCollisions()
+        {
+            // Window Top collision
+            if (position.Y - size < 0) position.Y = 0 + size;
+
+            // Window Left collision
+            if (position.X - size < 0) position.X = 0 + size;
+
+            // Window Right collision
+            if (position.X + size > Window.Height) position.X = Window.Height - size;
         }
     }
 }
