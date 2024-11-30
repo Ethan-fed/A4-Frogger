@@ -23,6 +23,7 @@ namespace Game10003
             Draw.FillColor = BrickColor;
             Draw.LineColor = Color.Black;
             Draw.LineSize = 2;
+            Draw.Rectangle(5, 5, 40, 20);
         }
     }
 }

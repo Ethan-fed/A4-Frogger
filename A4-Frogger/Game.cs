@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Raylib_cs;
+using System;
 using System.Numerics;
 
 namespace Game10003
@@ -9,6 +10,8 @@ namespace Game10003
         private Vector2 paddlePosition; // Position of the paddle
         private Vector2 paddleSize;     // Size of the paddle
 
+        // Brick Properties
+        Bricks[] bricks;
         public void Setup()
         {
             Window.TargetFPS = 60;
@@ -18,6 +21,12 @@ namespace Game10003
             // Initialize paddle properties
             paddleSize = new Vector2(150, 30); // Width = 150, Height = 30
             paddlePosition = new Vector2(Window.Width / 2 - paddleSize.X / 2, Window.Height - 60); // Centered at the bottom
+
+            bricks = new Bricks[12];
+            for (int i = 0; i < bricks.Length; i++)
+            {
+                bricks[i] = new Bricks(new Vector2(i * 20, 20));
+            }
         }
 
         public void Update()
@@ -30,6 +39,8 @@ namespace Game10003
 
             // Draw the paddle
             DrawPaddle();
+
+            Bricks.Render();
         }
 
         // Method to draw the paddle
