@@ -12,10 +12,11 @@ namespace Game10003
         public float BrickRadius;
         public Vector2 BrickPosition;
 
-        public Bricks() 
+        public Bricks(Vector2 newPosition) 
         {
             BrickColor = Color.White;
 
+            BrickPosition = newPosition;
         }
         public void Render()
         {
