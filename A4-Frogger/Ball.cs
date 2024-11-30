@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Game10003;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -20,6 +21,21 @@ namespace A4_Frogger
             position = startingPosition;
             velocity = startingVelocity;
             this.size = size;
+        }
+
+
+        public void Update()
+        {
+            DrawBall();
+        }
+
+
+        public void DrawBall()
+        {
+            Draw.LineColor = Color.Black; 
+            Draw.LineSize = 2;
+            Draw.FillColor = Color.Green;
+            Draw.Circle(position, size);
         }
     }
 }
