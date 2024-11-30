@@ -1,32 +1,44 @@
-﻿// Include code libraries you need below (use the namespace).
-using System;
+﻿using System;
 using System.Numerics;
 
-// The namespace your code is in.
 namespace Game10003
 {
-    /// <summary>
-    ///     Your game code goes inside this class!
-    /// </summary>
     public class Game
     {
-        // Place your variables here:
+        // Paddle properties
+        private Vector2 paddlePosition; // Position of the paddle
+        private Vector2 paddleSize;     // Size of the paddle
 
-
-        /// <summary>
-        ///     Setup runs once before the game loop begins.
-        /// </summary>
         public void Setup()
         {
+            Window.TargetFPS = 60;
+            Window.SetTitle("The Brick Breaker");
+            Window.SetSize(800, 600);
 
+            // Initialize paddle properties
+            paddleSize = new Vector2(150, 30); // Width = 150, Height = 30
+            paddlePosition = new Vector2(Window.Width / 2 - paddleSize.X / 2, Window.Height - 60); // Centered at the bottom
         }
 
-        /// <summary>
-        ///     Update runs every frame.
-        /// </summary>
         public void Update()
         {
+            // Clear the screen
+            Window.ClearBackground(Color.OffWhite);
 
+            // Update paddle position based on mouse movement
+            paddlePosition.X = Math.Clamp(Input.GetMouseX() - paddleSize.X / 2, 0, Window.Width - paddleSize.X);
+
+            // Draw the paddle
+            DrawPaddle();
+        }
+
+        // Method to draw the paddle
+        private void DrawPaddle()
+        {
+            Draw.LineColor = Color.Black;       // Set border color
+            Draw.LineSize = 2;                 // Set border thickness
+            Draw.FillColor = Color.Red;   // Set fill color
+            Draw.Rectangle(paddlePosition, paddleSize); // Draw the paddle
         }
     }
 }
