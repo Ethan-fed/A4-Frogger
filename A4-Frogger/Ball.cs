@@ -26,6 +26,8 @@ namespace A4_Frogger
 
         public void Update()
         {
+            UpdatePosition();
+            
             DrawBall();
         }
 
@@ -36,6 +38,12 @@ namespace A4_Frogger
             Draw.LineSize = 2;
             Draw.FillColor = Color.Green;
             Draw.Circle(position, size);
+        }
+
+
+        private void UpdatePosition()
+        {
+            position += velocity;
         }
     }
 }
