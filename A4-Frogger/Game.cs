@@ -12,6 +12,8 @@ namespace Game10003
 
         // Brick Properties
         public Bricks[,] brick;
+
+        
         public void Setup()
         {
             Window.TargetFPS = 60;
@@ -41,11 +43,15 @@ namespace Game10003
 
         public void Update()
         {
-
+            
             for (int r = 0; r < brick.GetLength(0); r++)
             {
                 for (int i = 0; i < brick.GetLength(1); i++)
-                {
+                {                    
+                    if ()
+                    {
+                        brick[r, i].BrickHit = true;
+                    }
                     brick[r, i].Render();
                 }
             }

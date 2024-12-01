@@ -5,7 +5,7 @@ namespace Game10003
 {
     public class Bricks
     {
-
+        public bool BrickHit;
         public Color BrickColor;
         public int BrickWidth;
         public int BrickHeight;
@@ -14,6 +14,8 @@ namespace Game10003
 
         public Bricks(int brickHeight, int brickWidth, Vector2 newPosition) 
         {           
+            BrickHit = false;
+
             BrickPosition = newPosition;
 
             BrickColor = Color.Gray;
@@ -24,10 +26,20 @@ namespace Game10003
         }        
         public void Render()
         {
-            Draw.Rectangle(BrickPosition.X, BrickPosition.Y, BrickWidth, BrickHeight);
-            Draw.FillColor = BrickColor;
-            Draw.LineColor = Color.Black;
-            Draw.LineSize = 2;
+            
+
+            if (BrickHit)
+            {
+               
+            }
+            else
+            {
+                Draw.Rectangle(BrickPosition.X, BrickPosition.Y, BrickWidth, BrickHeight);
+                Draw.FillColor = BrickColor;
+                Draw.LineColor = Color.Black;
+                Draw.LineSize = 2;
+            }
+
         }
     }
 }
