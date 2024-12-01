@@ -26,15 +26,15 @@ namespace Game10003
             int BrickWidth = 80;
             int Margin = 8;
             int BrickCount = (Window.Width - Margin) / (BrickWidth + Margin);
-            brick = new Bricks[BrickCount, 5];
+            brick = new Bricks[5, BrickCount];
             Console.WriteLine(brick.Length);
-            for (int )
+            for (int r  = 0; r < brick.GetLength(0); r++)
             {
-                for (int i = 0; i < brick.Length; i++)
+                for (int i = 0; i < brick.GetLength(1); i++)
                 {
                     Console.WriteLine(i);
-                    brick[i] = new Bricks(BrickHeight, BrickWidth, new Vector2((i * (BrickWidth + Margin)) + Margin, Margin));
-                    brick[i].Render();
+                    brick[r, i] = new Bricks(BrickHeight, BrickWidth, new Vector2((i * (BrickWidth + Margin)) + Margin, (r * (BrickHeight + Margin)) + Margin));
+                    brick[r, i].Render();
                 }
             }
         }
@@ -42,11 +42,13 @@ namespace Game10003
         public void Update()
         {
 
-            for (int i = 0; i < brick.Length; i++)
+            for (int r = 0; r < brick.GetLength(0); r++)
             {
-                brick[i].Render();
+                for (int i = 0; i < brick.GetLength(1); i++)
+                {
+                    brick[r, i].Render();
+                }
             }
-
             // Clear the screen
             Window.ClearBackground(Color.OffWhite);
 
