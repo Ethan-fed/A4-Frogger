@@ -11,7 +11,7 @@ namespace Game10003
         private Vector2 paddleSize;     // Size of the paddle
 
         // Brick Properties
-        Bricks[] bricks;
+        public Bricks[,] brick;
         public void Setup()
         {
             Window.TargetFPS = 60;
@@ -22,15 +22,31 @@ namespace Game10003
             paddleSize = new Vector2(150, 30); // Width = 150, Height = 30
             paddlePosition = new Vector2(Window.Width / 2 - paddleSize.X / 2, Window.Height - 60); // Centered at the bottom
 
-            bricks = new Bricks[12];
-            for (int = 0; int < bricks.Length; int++)
+            int BrickHeight = 40;
+            int BrickWidth = 80;
+            int Margin = 8;
+            int BrickCount = (Window.Width - Margin) / (BrickWidth + Margin);
+            brick = new Bricks[BrickCount, 5];
+            Console.WriteLine(brick.Length);
+            for (int )
             {
-
+                for (int i = 0; i < brick.Length; i++)
+                {
+                    Console.WriteLine(i);
+                    brick[i] = new Bricks(BrickHeight, BrickWidth, new Vector2((i * (BrickWidth + Margin)) + Margin, Margin));
+                    brick[i].Render();
+                }
             }
         }
 
         public void Update()
         {
+
+            for (int i = 0; i < brick.Length; i++)
+            {
+                brick[i].Render();
+            }
+
             // Clear the screen
             Window.ClearBackground(Color.OffWhite);
 
@@ -40,11 +56,8 @@ namespace Game10003
             // Draw the paddle
             DrawPaddle();
 
-            for (int i = 0; i < bricks.Length; i++)
-            {
-                bricks[i] = new Bricks(new Vector2(i * 20, 20));
-            }
             
+
         }
 
         // Method to draw the paddle
