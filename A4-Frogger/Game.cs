@@ -9,6 +9,8 @@ namespace Game10003
 {
     public class Game
     {
+        float collisionThreshold = 15.0f;
+
         // Paddle properties
         private Vector2 paddlePosition; // Position of the paddle
         private Vector2 paddleSize;     // Size of the paddle 
@@ -68,6 +70,8 @@ namespace Game10003
  
             ball.Update(); // Update ball
 
+            IsBallCollidingWithPaddle();
+
             for (int r = 0; r < brick.GetLength(0); r++)
             {
                 for (int i = 0; i < brick.GetLength(1); i++)
@@ -107,6 +111,45 @@ namespace Game10003
 
             return ballLeft <= brickRight && ballRight >= brickLeft &&
                 ballTop <= brickBottom && ballBottom >= brickTop;
+        }
+
+        private void IsBallCollidingWithPaddle()
+        {
+            float ballLeft = ball.position.X - ball.size;
+            float ballRight = ball.position.X + ball.size;
+            float ballTop = ball.position.Y - ball.size;
+            float ballBottom = ball.position.Y + ball.size;
+
+            float paddleLeft = paddlePosition.X;
+            float paddleRight = paddlePosition.X + paddleSize.X;
+            float paddleTop = paddlePosition.Y;
+            float paddleBottom = paddlePosition.Y + paddleSize.Y;
+
+            bool colLeft = MathF.Abs(ballLeft - paddleLeft) < collisionThreshold;
+            bool colRight = MathF.Abs(ballRight - paddleRight) < collisionThreshold;
+            bool colTop = MathF.Abs(ballTop - paddleTop) < collisionThreshold;
+            bool colBottom = MathF.Abs(ballBottom - paddleBottom) < collisionThreshold;
+
+            if (colTop && ball.velocity.Y > 0)
+            {
+                ball.position.Y = paddleTop - ball.size;
+                ball.velocity.Y *= -1;
+            }
+            if (colBottom && ball.velocity.Y < 0)
+            {
+                ball.position.Y = paddleBottom + ball.size;
+                ball.velocity.Y *= -1;
+            }
+            if (colLeft && ball.velocity.X > 0)
+            {
+                ball.position.X = paddleLeft - ball.size;
+                ball.velocity.X *= -1;
+            }
+            if (colRight && ball.velocity.X < 0)
+            {
+                ball.position.X = paddleRight + ball.size;
+                ball.velocity.X *= -1;
+            }
         }
     }
 }
