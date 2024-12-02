@@ -51,15 +51,32 @@ namespace Game10003
         private void CheckWindowCollisions()
         {
             // Window Top collision
-            if (position.Y - size < 0) position.Y = 0 + size;
+            if (position.Y - size < 0)
+            {
+                position.Y = 0 + size;
+                velocity.Y *= -1;
+            }
 
             // Window Left collision
-            if (position.X - size < 0) position.X = 0 + size;
+            if (position.X - size < 0)
+            {
+                position.X = 0 + size;
+                velocity.X *= -1;
+            }
 
             // Window Right collision
-            if (position.X + size > Window.Width) position.X = Window.Width - size;
+            if (position.X + size > Window.Width)
+            {
+                position.X = Window.Width - size;
+                velocity.X *= -1;
+            }
 
-            
+            // Window Bottom collision
+            if (position.Y + size > Window.Height) 
+            { 
+                position.Y = Window.Height - size;
+                velocity.Y *= -1;
+            }
         }
 
         //private bool IsCollidingWithPaddle( DrawPaddle)
