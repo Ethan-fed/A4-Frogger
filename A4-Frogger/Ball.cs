@@ -13,7 +13,7 @@ namespace Game10003
         public Vector2 position;
         public Vector2 velocity;
 
-        int size = 30;
+        public int size = 30;
         
         
         public Ball(Vector2 startingPosition, Vector2 startingVelocity, int size = 30) 
