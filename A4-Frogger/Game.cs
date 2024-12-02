@@ -1,5 +1,6 @@
+
 ﻿using Game10003;
-using Raylib_cs;
+﻿using Raylib_cs;
 using System;
 using System.Numerics;
 
@@ -9,14 +10,13 @@ namespace Game10003
     {
         // Paddle properties
         private Vector2 paddlePosition; // Position of the paddle
-        private Vector2 paddleSize;     // Size of the paddle
+        private Vector2 paddleSize;     // Size of the paddle 
+        // Ball
+        private Ball ball;
+
 
         // Brick Properties
         public Bricks[,] brick;
-
-        
-        // Ball
-        private Ball ball;
 
         public void Setup()
         {
@@ -27,6 +27,14 @@ namespace Game10003
             // Initialize paddle properties
             paddleSize = new Vector2(150, 30); // Width = 150, Height = 30
             paddlePosition = new Vector2(Window.Width / 2 - paddleSize.X / 2, Window.Height - 60); // Centered at the bottom
+
+// HEAD
+            // Initialize ball 
+            ball = new Ball(
+                new Vector2(Window.Width / 2, Window.Height -350), // Position Ball to just above the middle of screen
+                new Vector2(0, 4), // Give Ball downward velocity with 4 strength
+                15 // Give ball 15 radius
+            ); 
 
             int BrickHeight = 40;
             int BrickWidth = 80;
@@ -43,13 +51,7 @@ namespace Game10003
                     brick[r, i].Render();
                 }
             }
-
-            // Initialize ball 
-            ball = new Ball(
-                new Vector2(Window.Width / 2, Window.Height -350), // Position Ball to just above the middle of screen
-                new Vector2(0, 4), // Give Ball downward velocity with 4 strength
-                15 // Give ball 15 radius
-            ); 
+// Olwyn-Bricks
         }
 
         public void Update()
@@ -75,8 +77,9 @@ namespace Game10003
 
             // Draw the paddle
             DrawPaddle();
-
+ 
             ball.Update(); // Update ball
+
         }
 
         // Method to draw the paddle
