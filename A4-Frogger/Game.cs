@@ -1,4 +1,5 @@
 ﻿using Game10003;
+using Raylib_cs;
 using System;
 using System.Numerics;
 
@@ -10,6 +11,10 @@ namespace Game10003
         private Vector2 paddlePosition; // Position of the paddle
         private Vector2 paddleSize;     // Size of the paddle
 
+        // Brick Properties
+        public Bricks[,] brick;
+
+        
         // Ball
         private Ball ball;
 
@@ -23,6 +28,22 @@ namespace Game10003
             paddleSize = new Vector2(150, 30); // Width = 150, Height = 30
             paddlePosition = new Vector2(Window.Width / 2 - paddleSize.X / 2, Window.Height - 60); // Centered at the bottom
 
+            int BrickHeight = 40;
+            int BrickWidth = 80;
+            int Margin = 8;
+            int BrickCount = (Window.Width - Margin) / (BrickWidth + Margin);
+            brick = new Bricks[5, BrickCount];
+            Console.WriteLine(brick.Length);
+            for (int r  = 0; r < brick.GetLength(0); r++)
+            {
+                for (int i = 0; i < brick.GetLength(1); i++)
+                {
+                    Console.WriteLine(i);
+                    brick[r, i] = new Bricks(BrickHeight, BrickWidth, new Vector2((i * (BrickWidth + Margin)) + Margin, (r * (BrickHeight + Margin)) + Margin));
+                    brick[r, i].Render();
+                }
+            }
+
             // Initialize ball 
             ball = new Ball(
                 new Vector2(Window.Width / 2, Window.Height -350), // Position Ball to just above the middle of screen
@@ -33,6 +54,19 @@ namespace Game10003
 
         public void Update()
         {
+            
+            for (int r = 0; r < brick.GetLength(0); r++)
+            {
+                for (int i = 0; i < brick.GetLength(1); i++)
+                {                    
+                    /* if ()
+                    {
+                        brick[r, i].BrickHit = true;
+                    }
+                    */
+                    brick[r, i].Render();
+                }
+            }
             // Clear the screen
             Window.ClearBackground(Color.OffWhite);
 
