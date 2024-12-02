@@ -48,10 +48,11 @@ namespace Game10003
             {
                 for (int i = 0; i < brick.GetLength(1); i++)
                 {                    
-                    if ()
+                    /* if ()
                     {
                         brick[r, i].BrickHit = true;
                     }
+                    */
                     brick[r, i].Render();
                 }
             }
