@@ -6,17 +6,17 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace A4_Frogger
+namespace Game10003
 {
     public class Ball
     {
         public Vector2 position;
         public Vector2 velocity;
 
-        int size = 25;
+        int size = 30;
         
         
-        public Ball(Vector2 startingPosition, Vector2 startingVelocity, int size = 25) 
+        public Ball(Vector2 startingPosition, Vector2 startingVelocity, int size = 30) 
         {
             position = startingPosition;
             velocity = startingVelocity;
@@ -57,7 +57,13 @@ namespace A4_Frogger
             if (position.X - size < 0) position.X = 0 + size;
 
             // Window Right collision
-            if (position.X + size > Window.Height) position.X = Window.Height - size;
+            if (position.X + size > Window.Width) position.X = Window.Width - size;
+
+            
         }
+
+        //private bool IsCollidingWithPaddle( DrawPaddle)
+     
+       
     }
 }

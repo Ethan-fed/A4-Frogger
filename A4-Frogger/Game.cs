@@ -1,4 +1,4 @@
-﻿using A4_Frogger;
+﻿using Game10003;
 using System;
 using System.Numerics;
 
@@ -16,7 +16,7 @@ namespace Game10003
         public void Setup()
         {
             Window.TargetFPS = 60;
-            Window.SetTitle("The Brick Breaker");
+            Window.SetTitle("Brick Breaker");
             Window.SetSize(800, 600);
 
             // Initialize paddle properties
@@ -25,8 +25,8 @@ namespace Game10003
 
             // Initialize ball 
             ball = new Ball(
-                new Vector2(Window.Width / 2, Window.Height / 2), // Position Ball to middle of screen
-                new Vector2(0, 5), // Give Ball downward velocity with 5 strength
+                new Vector2(Window.Width / 2, Window.Height -350), // Position Ball to just above the middle of screen
+                new Vector2(0, 4), // Give Ball downward velocity with 4 strength
                 15 // Give ball 15 radius
             ); 
         }
