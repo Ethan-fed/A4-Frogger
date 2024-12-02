@@ -3,6 +3,7 @@
 ﻿using Raylib_cs;
 using System;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 
 namespace Game10003
 {
@@ -56,19 +57,6 @@ namespace Game10003
 
         public void Update()
         {
-            
-            for (int r = 0; r < brick.GetLength(0); r++)
-            {
-                for (int i = 0; i < brick.GetLength(1); i++)
-                {                    
-                    /* if ()
-                    {
-                        brick[r, i].BrickHit = true;
-                    }
-                    */
-                    brick[r, i].Render();
-                }
-            }
             // Clear the screen
             Window.ClearBackground(Color.OffWhite);
 
@@ -80,6 +68,20 @@ namespace Game10003
  
             ball.Update(); // Update ball
 
+            for (int r = 0; r < brick.GetLength(0); r++)
+            {
+                for (int i = 0; i < brick.GetLength(1); i++)
+                {
+                    if (IsBallCollidingWithBrick(brick[r, i]) && !brick[r, i].BrickHit);
+                    {
+                        brick[r, i].BrickHit = false;
+                        Console.WriteLine("brick hit");
+                    }
+
+                    brick[r, i].Render();
+                }
+            }
+
         }
 
         // Method to draw the paddle
@@ -89,6 +91,22 @@ namespace Game10003
             Draw.LineSize = 2;                 // Set border thickness
             Draw.FillColor = Color.Red;   // Set fill color
             Draw.Rectangle(paddlePosition, paddleSize); // Draw the paddle
+        }
+
+        private bool IsBallCollidingWithBrick(Bricks brick)
+        {
+            float ballLeft = ball.position.X - ball.size;
+            float ballRight = ball.position.X + ball.size;
+            float ballTop = ball.position.Y - ball.size;
+            float ballBottom = ball.position.Y + ball.size;
+
+            float brickLeft = brick.BrickPosition.X;
+            float brickRight = brick.BrickPosition.X + brick.BrickWidth;
+            float brickTop = brick.BrickPosition.Y;
+            float brickBottom = brick.BrickPosition.Y + brick.BrickHeight;
+
+            return ballLeft <= brickRight && ballRight >= brickLeft &&
+                ballTop <= brickBottom && ballBottom >= brickTop;
         }
     }
 }

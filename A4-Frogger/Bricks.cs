@@ -28,16 +28,13 @@ namespace Game10003
         {
             
 
-            if (BrickHit)
+            if (!BrickHit)
             {
-               
-            }
-            else
-            {
-                Draw.Rectangle(BrickPosition.X, BrickPosition.Y, BrickWidth, BrickHeight);
                 Draw.FillColor = BrickColor;
                 Draw.LineColor = Color.Black;
                 Draw.LineSize = 2;
+                Draw.Rectangle(BrickPosition.X, BrickPosition.Y, BrickWidth, BrickHeight);
+
             }
 
             /* for (int r = 0; r < brick.GetLength(0); r++)
